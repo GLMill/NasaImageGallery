@@ -114,6 +114,9 @@ class Application
             # and indexes the array numerically.
             $this->url_params = array_values($url);
 
+             // ok so this is just printing the last 
+             print_r($this->url_params);
+
             # for debugging. uncomment this if you have problems with the URL
             // echo 'Controller: ' . $this->url_controller . '<br>';
             // echo 'Action: ' . $this->url_action . '<br>';

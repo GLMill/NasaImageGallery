@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-4 offset-md-4 col-sm-12" id='border'>
             
-
+<?PHP echo URL ?>
             <?php
                 if(isset($errors)){
                         echo "<div class='form_error'>";

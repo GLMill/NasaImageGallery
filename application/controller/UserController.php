@@ -199,7 +199,7 @@ public function validateRegister(){
 				<h1> Hello users! </h1>
 				<p> Thankyou for joining, to activate your accout please click the link below </p>";
 		$message .= "
-				<a href=' " . URL . 'activate.php?email=' . urlencode($email)  . "&key=$activation'>".URL.'/activate.php?email='.urlencode($email).'&key='.$activation."</a></body></html>";
+				<a href=' " . URL . 'user/login/activate.php?email=' . urlencode($email)  . "&key=$activation'>".URL.'/activate.php?email='.urlencode($email).'&key='.$activation."</a></body></html>";
 		
 		mail($to, $subject, $message, $headers);
 	}

@@ -52,6 +52,8 @@ public function registerUser($userName, $email, $password, $activation)
 			$stmt->execute(array(':email'=>$email, ':password'=>$password));
 			
 			$userDetails = $stmt->fetch(PDO::FETCH_ASSOC);
+
+			# how do we add the error message about the need to activate your account?
 		
 		try {	
 						
