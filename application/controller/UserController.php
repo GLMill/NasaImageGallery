@@ -71,6 +71,11 @@ public function validateLogin(){
 	} else {
 		session_start();
 		$_SESSION['user_session'] = $this->model->doLogin($email,$password);
+
+		if($_SESSION['user_session']['active'] != 'active'){
+			$this->redirect('user/index/confirm_inactive');
+			unset($_SESSION['user_session']);
+		};
 		
 		
 	}
@@ -91,19 +96,6 @@ public function register()
 		require APP . 'view/user/register.php';
 		require APP . 'view/_templates/footer.php';
 
-		# If user logged-in and user type the URL to login page then take them to profile (do this check after header file loaded, because of session_start)
-		/*if($this->is_loggedin()){
-
-			if($_SESSION['user_session']['role']=='Admin'){
-
-				 	$this->redirect('admin');
-				
-			} else if(($_SESSION['user_session']['role']=='User')){
-					
-					 $this->redirect('profile');
-			}
-
-	  	}*/
 
 				
 	}
@@ -175,9 +167,8 @@ public function validateRegister(){
 				#need to edit model
 				$this->model->registerUser($userName,$email,$password,$activation);
 				$this->emailValidation($email,$activation);
-                $this->redirect('user/index/confirm_registration');
-
-
+				$this->redirect('user/index/confirm_inactive');
+				
 			}
 
 
@@ -198,13 +189,34 @@ public function validateRegister(){
 		$message = "<html><head></head><body>
 				<h1> Hello users! </h1>
 				<p> Thankyou for joining, to activate your accout please click the link below </p>";
-		$message .= "
-				<a href=' " . URL . 'user/login/activate.php?email=' . urlencode($email)  . "&key=$activation'>".URL.'/activate.php?email='.urlencode($email).'&key='.$activation."</a></body></html>";
-		
+		$message .= "<a href='https:".URL . "user/activate/" . urlencode($email)."/".$activation."'>"
+					           ."https:".URL."user/activate/".urlencode($email)."/".$activation."</a>";
+
+				//"<a href='".URL." 'user/login/activate?email=" . urlencode($email)  . "&key=$activation'>".URL." 'user/login/activate?email=" . urlencode($email)  . "&key=$activation'></a></body></html>";
+				//<a href='http://localhost/php/Nasa_MVC/user/login/activate?email=" . urlencode($email)  . "&key=$activation'>".URL.'/activate?email='.urlencode($email).'&key='.$activation."</a></body></html>";
+				
 		mail($to, $subject, $message, $headers);
+		echo $message;
 	}
 
 
+	public function activate($email,$activation){
+
+
+       echo "<hr>";
+	   echo $email."<br>";
+	   echo $activation."<br>";
+
+
+	  if($this->model->activation($email, $activation)){
+		$this->redirect('user/index/confirm_activation');
+	  }
+	   
+
+
+
+
+	}
 
 
 

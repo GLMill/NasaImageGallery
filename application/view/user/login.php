@@ -19,7 +19,9 @@
                             if($status == "confirm_registration" ){
                                 echo "<div class='alert info'>You have successfully registered! You can now login! </div>";
                             } else if($status == "confirm_inactive"){
-                                echo "<div class='alert error'>Your account seems inactive! Please contact admin at admin@saeapp.com </div>";
+                                echo "<div class='alert error'>Your account seems inactive! Please contact admin! </div>";
+                            } else  if($status == "confirm_activation" ){
+                                echo "<div class='alert info'>You have successfully activated your account! </div>";
                             }
                     }
             ?>

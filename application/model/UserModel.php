@@ -48,7 +48,7 @@ public function registerUser($userName, $email, $password, $activation)
 	public function doLogin($email,$password)
 	{
 		   $password = sha1($password);
-			$stmt = $this->db->prepare("SELECT * FROM user WHERE email=:email AND password =:password AND active='active'");
+			$stmt = $this->db->prepare("SELECT * FROM user WHERE email=:email AND password =:password");
 			$stmt->execute(array(':email'=>$email, ':password'=>$password));
 			
 			$userDetails = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -77,7 +77,7 @@ public function registerUser($userName, $email, $password, $activation)
 		#we prepare the statment and add through an array for better security
 		$stmt = $this->db->prepare("UPDATE user SET active ='active' WHERE(email=:email AND active=:activation) LIMIT 1");
 		$stmt ->execute(array(':email'=>$email, ':activation'=>$activation));
-
+		return true;
 	}
 		
 
