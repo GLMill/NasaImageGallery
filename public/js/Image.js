@@ -72,7 +72,9 @@ class Image{
                   }
                 $("#reqObject").text('https://api.nasa.gov/planetary/apod?api_key=AJOQvjXy8pcTBkSMMSKrihU28PnuX9GbC8MXSQiI');
                 $("#returnObject").text(JSON.stringify(data, null, 4));  
+                
                 $("#apod_explaination").text(data.explanation);
+                
                 $("#title").text(data.title);
     
                 toSearch=toSearch.split("-");

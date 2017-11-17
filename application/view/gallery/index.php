@@ -25,7 +25,7 @@
             <div id="text">
                 <h1 id="dateTitle"></h1>
                 <p id="apod_explaination"></p>
-                <p id="copyright"></p>
+               
             </div><!--- closing text-->
 
             <div id='mostLiked'>
@@ -35,7 +35,7 @@
                    <div class='masonry'>
                         <!-- needs to add the posts here-->
                         <?php echo $usersSaves ?>
-                   </div>
+                   </div>-->
                 
             </div>
 
