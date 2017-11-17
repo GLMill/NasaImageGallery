@@ -3,7 +3,7 @@ class Image{
     
     constructor(){
         this.current= new Date();
-        console.log(this.current);
+        //console.log(this.current);
         this.buildDate(this.current);
     }
     
@@ -48,13 +48,16 @@ class Image{
     
     
     request(toSearch){
+        console.log(toSearch);
         $.ajax({
             url:'https://api.nasa.gov/planetary/apod?api_key=AJOQvjXy8pcTBkSMMSKrihU28PnuX9GbC8MXSQiI',
             data:{
                 hd:true,
                 date:toSearch,
+                cache:false
             },
             error: function(){
+                console.log(request.readyState);
                 $("#canvas").html('<p>Oh dear... something went wrong </p>');
             },
     
@@ -70,38 +73,35 @@ class Image{
                     $("#video").css("display", "none"); 
                     $("#photo").attr("src", data.url);
                   }
+                /* These are available but not used*/
                 $("#reqObject").text('https://api.nasa.gov/planetary/apod?api_key=AJOQvjXy8pcTBkSMMSKrihU28PnuX9GbC8MXSQiI');
                 $("#returnObject").text(JSON.stringify(data, null, 4));  
                 
-                $("#apod_explaination").text(data.explanation);
-                
+
+                //Adding to view
+                $("#apod_explaination").text(data.explanation);         
                 $("#title").text(data.title);
-    
+                
                 toSearch=toSearch.split("-");
                 var day=toSearch[2];
                 var month=toSearch[1];
                 var year=toSearch[0];
                 toSearch =day+"-"+month+"-"+year;
                 $('#dateTitle').text(toSearch);
+
+                // adding to hidden form for save function
+                var title = data.title;
+                var explanation = data.explanation;
+                $("#inputTitle").val(title);
+                $("#inputDateTitle").val(toSearch);
+                $("#inputExplanation").val(explanation);
+
              },
              //by default requests are sent by GET 
              type: 'GET',
         })
     }; // ajax request over
-    
-  save_img(){
-      $date = $('#dateTitle').val();
-      $title = $('#title').vla();
-
-      $.ajax({
-          url:'save.php',
-          type:'post',
-          data: {date:date, title:title},
-          
-      });
-
-    
-  }
+  };
     
     
-    }
+    

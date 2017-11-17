@@ -17,8 +17,9 @@
                  $( "#datepicker" ).datepicker();
                } );
 
-
-               var  url = <?php echo URL; ?>
-               </script>     
+               var url = "<?php echo URL ; ?>";
+               console.log(url);
+               </script> 
+       
     </body>
 </html>
