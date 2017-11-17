@@ -191,9 +191,6 @@ public function validateRegister(){
 				<p> Thankyou for joining, to activate your accout please click the link below </p>";
 		$message .= "<a href='https:".URL . "user/activate/" . urlencode($email)."/".$activation."'>"
 					           ."https:".URL."user/activate/".urlencode($email)."/".$activation."</a>";
-
-				//"<a href='".URL." 'user/login/activate?email=" . urlencode($email)  . "&key=$activation'>".URL." 'user/login/activate?email=" . urlencode($email)  . "&key=$activation'></a></body></html>";
-				//<a href='http://localhost/php/Nasa_MVC/user/login/activate?email=" . urlencode($email)  . "&key=$activation'>".URL.'/activate?email='.urlencode($email).'&key='.$activation."</a></body></html>";
 				
 		mail($to, $subject, $message, $headers);
 		echo $message;
