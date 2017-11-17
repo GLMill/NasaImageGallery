@@ -48,16 +48,15 @@ class Image{
     
     
     request(toSearch){
-        console.log(toSearch);
+  
         $.ajax({
             url:'https://api.nasa.gov/planetary/apod?api_key=AJOQvjXy8pcTBkSMMSKrihU28PnuX9GbC8MXSQiI',
             data:{
                 hd:true,
                 date:toSearch,
-                cache:false
             },
             error: function(){
-                console.log(request.readyState);
+                
                 $("#canvas").html('<p>Oh dear... something went wrong </p>');
             },
     
@@ -90,7 +89,9 @@ class Image{
                 $('#dateTitle').text(toSearch);
 
                 // adding to hidden form for save function
+                
                 var title = data.title;
+                console.log(title);
                 var explanation = data.explanation;
                 $("#inputTitle").val(title);
                 $("#inputDateTitle").val(toSearch);
