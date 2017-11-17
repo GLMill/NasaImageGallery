@@ -27,7 +27,8 @@ session_start();
         <nav>
             <a href="<?php echo URL?>data/index"><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/NASA_logo.svg/200px-NASA_logo.svg.png' width='75px' height='50px' id='logo'/></a>
             <?php if($_SESSION){
-                echo "<a href=".URL."user/logout/true".">Sign Out</a>";
+                echo "<a href=".URL."user/logout/true".">Sign Out</a>
+                <a href='".URL."member/index/'>member</a>";
             }
             else{ echo "<a href='".URL."user/index/'>Signin</a>
                         <a href='".URL."user/register/'>Register</a>";

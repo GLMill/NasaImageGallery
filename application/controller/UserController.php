@@ -71,7 +71,8 @@ public function validateLogin(){
 	} else {
 		session_start();
 		$_SESSION['user_session'] = $this->model->doLogin($email,$password);
-
+		
+		// lets check this works
 		if($_SESSION['user_session']['active'] != 'active'){
 			$this->redirect('user/index/confirm_inactive');
 			unset($_SESSION['user_session']);
