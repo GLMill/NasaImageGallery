@@ -69,6 +69,7 @@ public function validateLogin(){
 	if(isset($errors)){
 		return $errors;
 	} else {
+		
 		session_start();
 		
 		$_SESSION['user_session'] = $this->model->doLogin($email,$password);

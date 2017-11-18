@@ -67,9 +67,6 @@ public function registerUser($userName, $email, $password, $activation)
 		} catch(PDOException $e) {
 				echo $e->getMessage();
 			}
-		
-		
-		
 		}
 
 

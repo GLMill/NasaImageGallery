@@ -16,7 +16,12 @@ class MemberModel extends BaseModel
            
            $stmt = $this->db->prepare("INSERT INTO img_liked(imgDate, title) 
                                                       VALUES(:img_date, :title)");                                                                     
-           $stmt->execute(array(':img_date'=>$dateTitle,':title'=>$title));							  
+           $stmt->execute(array(':img_date'=>$dateTitle,':title'=>$title));	
+           $row= $stmt->fetch(PDO::FETCH_ASSOC);
+           return $row['id'];
+
+           
+           
                
        } catch(PDOException $e) {
            echo $e->getMessage();
@@ -31,9 +36,10 @@ class MemberModel extends BaseModel
          $stmt->execute(array(':imgDate'=>$date));
          $row = $stmt->fetch(PDO::FETCH_ASSOC);
                          
-                     
-         if($row['imgDate']==$date) {
-         return true;
+        
+         // if row exists with id
+         if($row['id']) {
+         return $row['id'];
          } else {
              return false;
          }

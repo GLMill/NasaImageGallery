@@ -97,21 +97,22 @@ class MemberController extends BaseController
         $explanation ='suesie stone';// $_POST['explanation'];
 
         //testing ground so this works now to get the real variables..
-        $user_id=1;
+        // can't match the user id  
+        $user_id = 1;
+        //$user_id=1;
         $image_id=2;
-
-        echo $_SESSION['user_session']['id'];
 
 
         //ok so this is inserting into the imageLiked database
         // how do we stop a user adding the same picture twice?
-        if(!$this->model->checkImageExists($dateTitle)){
+        if($this->model->checkImageExists($dateTitle)){
+            // capturing the variable 
             $this->model->insertImage($title, $dateTitle);
             // inserting image if doesnt exist
         }
         else{
             if(!$this->model->checkPairExists($user_id, $image_id)){
-                $this->model->matchUserImg($user_id, $image_id);
+                $image_id = $this->model->matchUserImg($user_id, $image_id);
                 // matching pair if pair not exist
             }
             else {
