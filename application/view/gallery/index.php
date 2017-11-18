@@ -13,15 +13,14 @@
                     if($_SESSION){
                         // write turn this into a hidden form
                 
-                        echo "<form id='save_image_forms'>
-                                <input type='text' name='inputTitle' id='inputTitle'>
-                                <input type='text' name='inputDateTitle' id='inputDateTitle' >
-                                <input type='text' name='inputExplanation' id='inputExplanation' >
+                        echo "<form id='save_image_form'>
+                                <input type='hidden' name='inputTitle' id='inputTitle'>
+                                <input type='hidden' name='inputDateTitle' id='inputDateTitle' >
+                                <input type='hidden' name='inputExplanation' id='inputExplanation' >
                                 <input type='submit' value='Save'>
                             </form>";
                     }?>
             <div id="canvas">
-                
                 <img id="photo" width="250px"/>
                 <iframe id="video" type="text/html" width="640" height="385" frameborder="0"></iframe>
             </div><!--- closing canvas body for image or video-->

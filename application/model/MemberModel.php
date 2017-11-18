@@ -9,6 +9,20 @@ class MemberModel extends BaseModel
 
    // save to user_img
 
+   public function insertImage($title, $dateTitle)
+   {
+       try
+       {	
+           
+           $stmt = $this->db->prepare("INSERT INTO img_liked(imgDate, title) 
+                                                      VALUES(:img_date, :title)");                                                                     
+           $stmt->execute(array(':img_date'=>$dateTitle,':title'=>$title));							  
+               
+       } catch(PDOException $e) {
+           echo $e->getMessage();
+       }				
+   }
+
 
    // save to img saved // need to get controller to check for this 
    public function checkImageExists($date){
@@ -28,8 +42,9 @@ class MemberModel extends BaseModel
          echo $e->getMessage();
      }
 
-     
 }
+
+
 
 	
 }

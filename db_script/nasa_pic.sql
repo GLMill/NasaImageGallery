@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 CREATE TABLE IF NOT EXISTS `user_img_liked` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL COMMENT 'user_id',
-  `like_id` int(11) NOT NULL COMMENT 'like_id'
+  `image_id` int(11) NOT NULL COMMENT 'like_id'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --

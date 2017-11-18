@@ -23,43 +23,33 @@ $(document).ready(function(){
     
 
 
-    $('#save_image_forms').on('submit', function(event){
-        
-       
+    $('#save_image_form').on('submit', function(event){
            
             var title = $('#inputTitle').val();
             var dateTitle =  $('#inputDateTitle').val();
             var explanation =  $('#inputExplanation').val();
            
-          
+          url += "/member/save";
+          console.log(url);
 
           var dataString = 'title='+ title 
-          + '&dateTitle='+ dateTitle + 
-          '&explanation='+ explanation ;
+          + '&dateTitle='+ dateTitle;
 
-           
+          console.log(typeof dataString);
+
           $.ajax({
-              url         : url + "member/save",
+              url         : url,
               data        : dataString,
               type        : 'POST',
-              success     : function(data){
-                                
-                    var  data = JSON.parse(data);
-                      
-                    /* $('.edit-profile-section').hide('slow')
-                     $('.user-details').show('slow');
-                      
-                   
-                      $('#'+user_id).find('#upi').html("<img class='profile-img' src='"+url+'images/'+data["profile_image"]+"' />");
-                      $('#'+user_id).find('#ufn').html(data["firstname"]);
-                      $('#'+user_id).find('#uln').html(data["lastname"]);
-                      $('#'+user_id).find('#ue').html(data["email"]);
-                      $('#'+user_id).find('#ujd').html(data["joining_date"]);
-                      $('#'+user_id).find('#ur').html(data["role"]);
-                      $('#'+user_id).find('#us').html(data["status"]);*/
-            
-             
-              }
+              datatype : text,
+              success    : function(data){
+                
+                 var  data = JSON.parse(data);
+            console.log('i did as i was told!');
+            },
+              error: function(result){
+                console.log('helloe i failed'+result);
+            },
           });
        
   });

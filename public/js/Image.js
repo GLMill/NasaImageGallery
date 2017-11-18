@@ -55,6 +55,7 @@ class Image{
                 hd:true,
                 date:toSearch,
             },
+            
             error: function(){
                 
                 $("#canvas").html('<p>Oh dear... something went wrong </p>');
