@@ -87,6 +87,8 @@ class MemberController extends BaseController
 
 
 
+    // this now needs user id and image id
+
     public function save(){
         $pageTitle = 'saved Images';
 
@@ -94,12 +96,27 @@ class MemberController extends BaseController
         $dateTitle = 'hey there'; //$_POST['dateTitle'];
         $explanation ='suesie stone';// $_POST['explanation'];
 
+        //testing ground so this works now to get the real variables..
+        $user_id=1;
+        $image_id=2;
+
+        echo $_SESSION['user_session']['id'];
+
 
         //ok so this is inserting into the imageLiked database
+        // how do we stop a user adding the same picture twice?
         if(!$this->model->checkImageExists($dateTitle)){
             $this->model->insertImage($title, $dateTitle);
+            // inserting image if doesnt exist
         }
         else{
+            if(!$this->model->checkPairExists($user_id, $image_id)){
+                $this->model->matchUserImg($user_id, $image_id);
+                // matching pair if pair not exist
+            }
+            else {
+                echo 'This has already been saved!';
+            };
             echo 'This already exists';
         }
     }
